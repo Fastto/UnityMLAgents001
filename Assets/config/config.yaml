@@ -1,28 +1,35 @@
+default_settings:
+  trainer_type: ppo
+  max_steps: 5000000
+  time_horizon: 256
+  summary_freq: 2000
+  
+  hyperparameters:
+    batch_size: 128
+    buffer_size: 12800
+    learning_rate: 3.0e-4
+    learning_rate_schedule: constant
+    beta: 5.0e-3
+    beta_schedule: constant
+    epsilon: 0.2
+    epsilon_schedule: constant
+    lambd: 0.9
+    num_epoch: 3
+  
+  network_settings:
+    hidden_units: 256 
+    num_layers: 2
+  
+  reward_signals:
+    extrinsic:
+      gamma: 0.99
+      strength: 1.0
+
 behaviors:
   trackingAgent:
     trainer_type: ppo
-    max_steps: 5000000
-    time_horizon: 128
-    summary_freq: 1000
-
-    hyperparameters:
-      batch_size: 128
-      buffer_size: 12800
-      learning_rate: 3.0e-4
-      learning_rate_schedule: linear
-      beta: 5.0e-3
-      beta_schedule: constant
-      epsilon: 0.2
-      epsilon_schedule: linear
-      lambd: 0.9
-      num_epoch: 3
-
-    network_settings:
-      normalize: false
-      hidden_units: 128 # qty neurons per layer
-      num_layers: 2 # layers num
-    
-    reward_signals:
-      extrinsic:
-        gamma: 0.99
-        strength: 1.0
+  continuousActionsAgent:
+    trainer_type: ppo
+  discreteActionsAgent:
+    trainer_type: ppo
+  
